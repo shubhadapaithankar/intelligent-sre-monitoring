@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  sre-guardian:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - DEMO_MODE=true
+      - HISTORY_HOURS=12
+      - ISOFOREST_CONTAM=0.05
+    volumes:
+      - sre-models:/tmp
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8080/healthz')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  sre-models:
