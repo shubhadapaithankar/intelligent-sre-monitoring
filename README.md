@@ -15,8 +15,6 @@ docker run --rm -p 8080:8080 -e DEMO_MODE=true sre-guardian
 
 # 2. See AI-powered anomaly detection in action
 curl "http://localhost:8080/anomalies?top_k=3" | jq
-
-# 3. Get intelligent insights like this:
 ```
 
 **Example Output:**
@@ -494,7 +492,7 @@ You don’t need to install or download any model — it trains automatically fr
 ---
 
 ## 📜 License
-MIT (or adapt for your org)
+MIT
 
 
 ### Demo mode (no Prometheus needed)
