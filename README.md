@@ -502,6 +502,7 @@ Set `DEMO_MODE=true` to synthesize realistic metrics so `/anomalies` returns res
 
 ```bash
 export DEMO_MODE=true
+export K8S_IN_CLUSTER=false
 python main.py
 curl "http://localhost:8080/anomalies?top_k=5" | jq
 ```
