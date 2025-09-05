@@ -106,16 +106,37 @@ docker run --rm -p 8080:8080 \
 ### **Option 3: Local Development**
 ```bash
 pip install -r requirements.txt
-export DEMO_MODE=true  # For testing without Prometheus
+
+# For demo with synthetic data (no infrastructure needed)
+export DEMO_MODE=true
+export K8S_IN_CLUSTER=false
+python main.py
+
+# OR for connecting to real Prometheus locally
+export DEMO_MODE=false
+export PROM_URL=http://localhost:9090
+export K8S_IN_CLUSTER=false
 python main.py
 ```
 
 ### **Option 4: Production Kubernetes**
 ```bash
+# Build and push to your registry
 docker build -t your-registry/sre-guardian:latest .
 docker push your-registry/sre-guardian:latest
+
+# Deploy to Kubernetes cluster
 kubectl apply -f deploy/k8s-manifests.yaml
+
+# Check deployment
+kubectl -n nn-slo get pods
+kubectl -n nn-slo port-forward svc/nn-slo 8080:80
+
+# Access the service
+curl http://localhost:8080/healthz
 ```
+
+**Note**: Update the image reference in `deploy/k8s-manifests.yaml` to point to your registry before deploying.
 
 ## 🎭 **What Happens in Demo Mode?**
 
