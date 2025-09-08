@@ -489,12 +489,6 @@ You don’t need to install or download any model — it trains automatically fr
 - **Noise**: tune `ISOFOREST_CONTAM`, lookback windows, or metric step
 - **Security**: put behind ingress/gateway with auth
 
----
-
-## 📜 License
-MIT
-
-
 ### Demo mode (no Prometheus needed)
 Set `DEMO_MODE=true` to synthesize realistic metrics so `/anomalies` returns results even without Prometheus:
 
